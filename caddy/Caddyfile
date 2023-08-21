@@ -1,0 +1,13 @@
+{$HOST} {
+        basicauth /* {
+                {$RPC_USERS}
+        }
+        reverse_proxy gaiad:1317
+}
+
+{$HOST}:9100 {
+        basicauth /* {
+                {$METRICS_USERS}
+        }
+        reverse_proxy nodeexporter:9100
+}

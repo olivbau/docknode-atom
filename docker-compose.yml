@@ -1,0 +1,65 @@
+version: "3.8"
+
+networks:
+  docknode-atom:
+    driver: bridge
+
+volumes:
+  gaiad_data: {}
+  caddy_data: {}
+  caddy_config: {}
+
+services:
+  gaiad:
+    image: "gaiad:11.0.0"
+    restart: unless-stopped
+    expose:
+      - 1317
+      - 26657
+    ports:
+      - "26656:26656"
+    volumes:
+      - "gaiad_data:/root/.gaiad"
+    command: >
+      /usr/bin/gaiad start
+      --home /root/.gaiad
+      --chain-id pacific-1
+      --moniker sonarwatch
+    networks:
+      - docknode-atom
+    depends_on:
+      - caddy
+
+  nodeexporter:
+    image: prom/node-exporter:v1.5.0
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    expose:
+      - 9100
+    networks:
+      - docknode-atom
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+      - "9100:9100"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - METRICS_USERS=${METRICS_USERS:?err}
+      - RPC_USERS=${RPC_USERS:?err}
+      - HOST=${HOST:?err}
+    networks:
+      - docknode-atom
