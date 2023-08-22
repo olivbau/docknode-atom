@@ -14,17 +14,17 @@ services:
     image: "gaiad:11.0.0"
     restart: unless-stopped
     expose:
+      - 9090
       - 1317
       - 26657
     ports:
       - "26656:26656"
     volumes:
-      - "gaiad_data:/root/.gaiad"
-    command: >
-      /usr/bin/gaiad start
-      --home /root/.gaiad
-      --chain-id pacific-1
-      --moniker sonarwatch
+      - ./gaia/config.toml:/root/.gaiad/config/config.toml
+      - ./gaia/addrbook.json:/root/.gaiad/config/addrbook.json
+      - ./gaia/genesis.cosmoshub-4.json:/root/.gaiad/config/genesis.cosmoshub-4.json
+      - ./gaia:/root/.gaiad/config
+      - gaiad_data:/root/.gaiad
     networks:
       - docknode-atom
     depends_on:

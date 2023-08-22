@@ -45,12 +45,16 @@ nano .env
 ```bash
 ufw allow ssh
 ufw deny 1317
+ufw deny 26657
+ufw deny 9090
 ufw enable
 ```
 
 4. Run
 
 ```bash
+wget -O ./gaia/genesis.cosmoshub-4.json.gz https://raw.githubusercontent.com/cosmos/mainnet/master/genesis/genesis.cosmoshub-4.json.gz
+gzip -d ./gaia/genesis.cosmoshub-4.json.gz
 docker compose pull --ignore-pull-failures
 docker compose up -d
 docker logs -f docknode-atom-gaiad-1 --since 5m
