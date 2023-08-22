@@ -22,7 +22,7 @@ services:
     volumes:
       - ./gaia/config.toml:/root/.gaiad/config/config.toml
       - ./gaia/addrbook.json:/root/.gaiad/config/addrbook.json
-      - ./gaia/genesis.cosmoshub-4.json:/root/.gaiad/config/genesis.cosmoshub-4.json
+      - ./gaia/genesis.json:/root/.gaiad/config/genesis.json
       - ./gaia:/root/.gaiad/config
       - gaiad_data:/root/.gaiad/data
     networks:
