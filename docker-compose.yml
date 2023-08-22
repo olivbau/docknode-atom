@@ -20,11 +20,11 @@ services:
     ports:
       - "26656:26656"
     volumes:
-      - ./gaia/config.toml:/root/.gaiad/config/config.toml
-      - ./gaia/addrbook.json:/root/.gaiad/config/addrbook.json
-      - ./gaia/genesis.json:/root/.gaiad/config/genesis.json
-      - ./gaia:/root/.gaiad/config
-      - gaiad_data:/root/.gaiad/data
+      - ./gaia/config.toml:/root/.gaia/config/config.toml
+      - ./gaia/addrbook.json:/root/.gaia/config/addrbook.json
+      - ./gaia/genesis.json:/root/.gaia/config/genesis.json
+      - ./gaia:/root/.gaia/config
+      - gaiad_data:/root/.gaia/data
     networks:
       - docknode-atom
     depends_on:
