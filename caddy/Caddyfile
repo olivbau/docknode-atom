@@ -2,7 +2,7 @@
         basicauth /* {
                 {$RPC_USERS}
         }
-        reverse_proxy gaiad:1317
+        reverse_proxy gaiad:26657
 }
 
 {$HOST}:9100 {

@@ -53,8 +53,8 @@ ufw enable
 4. Run
 
 ```bash
-wget -O ./gaia/genesis.cosmoshub-4.json.gz https://raw.githubusercontent.com/cosmos/mainnet/master/genesis/genesis.cosmoshub-4.json.gz
-gzip -d ./gaia/genesis.cosmoshub-4.json.gz
+wget -O ./gaia/genesis.json.gz https://raw.githubusercontent.com/cosmos/mainnet/master/genesis/genesis.cosmoshub-4.json.gz
+gzip -d ./gaia/genesis.json.gz
 docker compose pull --ignore-pull-failures
 docker compose up -d
 docker logs -f docknode-atom-gaiad-1 --since 5m

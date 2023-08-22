@@ -7,5 +7,6 @@
 .env
 
 # Genesis file
+gaia/genesis.json
 gaia/genesis.cosmoshub-4.json
 gaia/genesis.cosmoshub-4.json.gz

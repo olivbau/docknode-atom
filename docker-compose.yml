@@ -24,7 +24,7 @@ services:
       - ./gaia/addrbook.json:/root/.gaiad/config/addrbook.json
       - ./gaia/genesis.cosmoshub-4.json:/root/.gaiad/config/genesis.cosmoshub-4.json
       - ./gaia:/root/.gaiad/config
-      - gaiad_data:/root/.gaiad
+      - gaiad_data:/root/.gaiad/data
     networks:
       - docknode-atom
     depends_on:
