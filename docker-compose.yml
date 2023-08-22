@@ -21,7 +21,7 @@ services:
       - "26656:26656"
     volumes:
       - ./gaia/config.toml:/root/.gaia/config/config.toml
-      - ./gaia/addrbook.json:/root/.gaia/config/addrbook.json
+      - ./gaia/addrbook.json:/root/.gaia/config/addrbook.json:rw
       - ./gaia/genesis.json:/root/.gaia/config/genesis.json
       - ./gaia:/root/.gaia/config
       - gaiad_data:/root/.gaia/data
